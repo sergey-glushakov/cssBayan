@@ -15,6 +15,121 @@ html {
     box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
     box-sizing: inherit;
-  }
+}
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1024px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+h1 {
+    margin: 0;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.accordion__item {
+    display: grid;
+    grid-template-columns: 1fr 1fr 20px;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "title title icon"
+        "content content content";
+    border-bottom: 2px solid var(--grey-color);
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+}
+
+.accordion__item :hover {
+    cursor: pointer;
+}
+
+.accordion__title {
+    grid-area: title;
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--text-main);
+}
+
+.accordion__icon {
+    grid-area: icon;
+    width: 20px;
+    height: 20px;
+    transition: all 0.3s;
+    visibility: hidden;
+}
+
+.accordion__content {
+    grid-area: content;
+    justify-self: center;
+}
+
+.accordion__list:hover .accordion__icon {
+    visibility: visible;
+}
+
+input {
+    visibility: hidden;
+}
+
+input,
+.accordion__content {
+    height: 0;
+    overflow: hidden;
+    transition: all .35s;
+}
+
+input:checked~.accordion__content {
+    height: 100%;
+    align-self: center;
+}
+
+input:checked~.accordion__icon {
+    transform: rotate(45deg);
+    visibility: visible;
+}
+
+input:checked~.accordion__title {
+    color: var(--text-blue);
+}
+
+.accordion__item:hover>.accordion__content {
+    height: 100%;
+    align-self: center;
+}
+
+.accordion__item:hover>.accordion__icon {
+    transform: rotate(45deg);
+    transition: all .3s;
+}
+
+.accordion__item:hover>.accordion__title {
+    color: var(--text-blue);
+    transition: all .3s;
+}
